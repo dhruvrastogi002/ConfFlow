@@ -134,6 +134,13 @@ dist
 !.yarn/sdks
 !.yarn/versions
 
+node_modules/
+Backend/node_modules/
+Frontend/node_modules/
+Backend/.env
+Frontend/firebase-config.local.js
+
+
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
