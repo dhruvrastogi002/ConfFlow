@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: confflow-backend
+    runtime: node
+    rootDir: .
+    buildCommand: npm install
+    startCommand: npm run start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: PORT
+        value: 5000
+      - key: FRONTEND_ORIGIN
+        value: https://confflow-frontend.onrender.com
+      - key: MONGO_URI
+        sync: false
+      - key: FIREBASE_SERVICE_KEY
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
+      - key: EMAIL_FALLBACK_TO
+        sync: false
+
+  - type: web
+    name: confflow-frontend
+    runtime: static
+    rootDir: Frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: .
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
