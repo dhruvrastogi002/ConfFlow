@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ConfFlow — AI-powered research conference management. Paper submission, peer review, and decisions in one platform.">
+<meta property="og:title" content="ConfFlow — AI-Powered Conference Management">
+<meta property="og:description" content="The complete platform for research conference management. AI review, real-time tracking, and intelligent decisions.">
+<title>ConfFlow — AI-Powered Research Conference Platform</title>
+
+<!-- CSS -->
+<link rel="stylesheet" href="./main.css">
+<link rel="stylesheet" href="./home.css">
+<link rel="stylesheet" href="./nav.css">
+<link rel="stylesheet" href="./dashboard.css">
+
+<!-- Favicon (inline SVG) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%234f46e5'/><path d='M8 10h16M8 16h10M8 22h13' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>">
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="cf-logo" onclick="CF.navigate('home');return false">
+      <div class="cf-logo__mark">
+        <svg viewBox="0 0 20 20"><path d="M3 5h14M3 10h9M3 15h11" stroke-linecap="round"/></svg>
+      </div>
+      <span class="cf-logo__text">ConfFlow</span>
+    </a>
+    <div class="nav-links">
+      <button class="nav-link" onclick="CF.navigate('conferences')">Conferences</button>
+      <button class="nav-link" onclick="CF.navigate('home')">How It Works</button>
+      <button class="nav-link" onclick="CF.navigate('home')">Pricing</button>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn--ghost" onclick="CF.navigate('login')">Sign in</button>
+      <button class="btn btn--primary" onclick="CF.navigate('register')">Get Started</button>
+    </div>
+    <button class="mobile-btn" onclick="CF.toggleMobileMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#" onclick="CF.navigate('conferences');CF.toggleMobileMenu();return false">Conferences</a>
+    <button onclick="CF.navigate('login');CF.toggleMobileMenu()">Sign in</button>
+    <button onclick="CF.navigate('register');CF.toggleMobileMenu()">Get Started</button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════════════
+     HOME PAGE
+════════════════════════════════════════════════════ -->
+<div id="page-home" class="page">
+  <div class="public-page">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__content">
+        <div class="hero__eyebrow">
+          <span class="hero__dot"></span>
+          AI-Powered Conference Platform
+        </div>
+        <h1 class="hero__title">
+          Research Conferences<br>
+          <em>Reimagined.</em>
+        </h1>
+        <p class="hero__desc">ConfFlow automates the complete paper lifecycle — submission, AI-assisted review, decisions, and presentation scheduling — in one elegant platform.</p>
+        <div class="hero__cta">
+          <button class="btn btn--primary btn--lg" onclick="CF.navigate('register')">Create Conference Free</button>
+          <button class="btn btn--outline btn--lg" onclick="CF.navigate('conferences')">Browse Conferences</button>
+        </div>
+        <div class="hero__stats">
+          <div class="h-stat"><span class="h-stat__num" data-count="2400" data-suffix="+">2,400+</span><span class="h-stat__lbl">Conferences</span></div>
+          <div class="h-stat-div"></div>
+          <div class="h-stat"><span class="h-stat__num" data-count="98000" data-suffix="+">98K+</span><span class="h-stat__lbl">Papers</span></div>
+          <div class="h-stat-div"></div>
+          <div class="h-stat"><span class="h-stat__num" data-count="4.9" data-suffix="★">4.9★</span><span class="h-stat__lbl">Rating</span></div>
+        </div>
+      </div>
+      <div class="hero__visual">
+        <div class="preview-card">
+          <div class="preview-titlebar">
+            <div class="preview-dots"><span></span><span></span><span></span></div>
+            <span class="preview-titletext">ConfFlow · Chair Dashboard</span>
+          </div>
+          <div class="preview-body">
+            <div class="preview-sidebar">
+              <div class="pvs-item active">⬡ Overview</div>
+              <div class="pvs-item">◈ Papers</div>
+              <div class="pvs-item">🤖 AI Review</div>
+              <div class="pvs-item">⚖ Decisions</div>
+              <div class="pvs-item">📅 Program</div>
+            </div>
+            <div class="preview-main">
+              <div class="pv-grid">
+                <div class="pv-stat blue"><div class="pv-stat-num">142</div><div class="pv-stat-lbl">Papers</div></div>
+                <div class="pv-stat green"><div class="pv-stat-num">89</div><div class="pv-stat-lbl">Reviewed</div></div>
+                <div class="pv-stat amber"><div class="pv-stat-num">34</div><div class="pv-stat-lbl">Accepted</div></div>
+              </div>
+              <div class="pv-chart">
+                <div class="pv-chart-label">AI Score Distribution</div>
+                <div class="pv-bars">
+                  <div class="pv-bar" style="height:25%"></div>
+                  <div class="pv-bar" style="height:45%"></div>
+                  <div class="pv-bar" style="height:70%"></div>
+                  <div class="pv-bar" style="height:100%"></div>
+                  <div class="pv-bar" style="height:80%"></div>
+                  <div class="pv-bar" style="height:55%"></div>
+                  <div class="pv-bar" style="height:30%"></div>
+                </div>
+              </div>
+              <div class="pv-table">
+                <div class="pv-row header"><span>Paper</span><span>Status</span></div>
+                <div class="pv-row"><span style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Deep Learning in...</span><span class="pv-badge accepted">Accepted</span></div>
+                <div class="pv-row"><span style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Novel Approach...</span><span class="pv-badge review">In Review</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features">
+      <div class="section-header">
+        <div class="section-tag">Platform Features</div>
+        <h2>Everything You Need,<br>Built for Research</h2>
+        <p>A complete conference management system for the modern academic community</p>
+      </div>
+      <div class="features-grid">
+        <div class="feat-card feat-card--wide">
+          <div class="feat-icon feat-icon--indigo">🤖</div>
+          <h3>AI-Powered Review Engine</h3>
+          <p>Our NLP pipeline pre-evaluates every submission for originality, scientific quality, and venue relevance — before human reviewers begin. Cut review time by 60% while improving consistency.</p>
+          <div class="feat-tags">
+            <span class="feat-tag">Plagiarism Detection</span>
+            <span class="feat-tag">Auto-Scoring</span>
+            <span class="feat-tag">Topic Classification</span>
+            <span class="feat-tag">Risk Flags</span>
+          </div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon feat-icon--emerald">📊</div>
+          <h3>Real-time Tracking</h3>
+          <p>Authors track every status update live. Complete transparency at every stage — no email ping-pong.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon feat-icon--sky">🔒</div>
+          <h3>Double-blind Review</h3>
+          <p>Toggle full anonymization per track. Configurable conflict-of-interest detection built in.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon feat-icon--amber">⚡</div>
+          <h3>Smart Assignments</h3>
+          <p>Automatically match reviewers to papers by topic expertise and conflict graph.</p>
+        </div>
+        <div class="feat-card feat-card--wide">
+          <div class="feat-icon feat-icon--rose">📅</div>
+          <h3>Program Builder</h3>
+          <p>Generate your full conference program from accepted papers in one click. Supports parallel tracks, keynotes, and poster sessions.</p>
+          <div class="feat-visual">
+            <div class="feat-prog-item">09:00 — Opening Keynote: The Future of AI</div>
+            <div class="feat-prog-item feat-prog-item--active">10:30 — Session A: Deep Learning Track</div>
+            <div class="feat-prog-item feat-prog-item--active">10:30 — Session B: NLP Track</div>
+            <div class="feat-prog-item">12:00 — Poster Session I</div>
+          </div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon feat-icon--teal">✉️</div>
+          <h3>Email Automation</h3>
+          <p>Automated notifications at every stage. Custom templates per conference and track.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORKFLOW -->
+    <section class="workflow">
+      <div class="workflow-inner">
+        <div class="section-header">
+          <div class="section-tag">Complete Lifecycle</div>
+          <h2>From Submission to Presentation</h2>
+          <p>Every step automated and tracked</p>
+        </div>
+        <div class="workflow-steps">
+          <div class="wf-step"><div class="wf-num">1</div><h4>Setup</h4><p>Chair creates conference with tracks, deadlines, and criteria</p></div>
+          <div class="wf-step"><div class="wf-num">2</div><h4>Submission</h4><p>Authors upload papers with version control</p></div>
+          <div class="wf-step"><div class="wf-num">3</div><h4>AI Review</h4><p>AI pre-screens and scores, human reviewers evaluate</p></div>
+          <div class="wf-step"><div class="wf-num">4</div><h4>Decision</h4><p>Chair accepts or rejects with full context</p></div>
+          <div class="wf-step"><div class="wf-num">5</div><h4>Presentation</h4><p>Camera-ready upload and program generation</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="cta-box">
+        <div class="cta-box__content">
+          <h2>Ready to run your next conference?</h2>
+          <p>Join 800+ organizations already using ConfFlow</p>
+          <div class="cta-box__btns">
+            <button class="btn btn--white btn--lg" onclick="CF.navigate('register')">Start Free Today</button>
+            <button class="btn btn--outline-white btn--lg" onclick="CF.navigate('conferences')">Browse Conferences</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-brand-logo">
+            <div class="footer-brand-mark">
+              <svg viewBox="0 0 20 20"><path d="M3 5h14M3 10h9M3 15h11" stroke-linecap="round"/></svg>
+            </div>
+            <span class="footer-brand-name">ConfFlow</span>
+          </div>
+          <p class="footer-brand-desc">AI-powered research conference management for the modern academic community.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col"><h5>Platform</h5>
+            <a href="#">Conferences</a><a href="#">Submit Paper</a><a href="#">Review</a><a href="#">Analytics</a>
+          </div>
+          <div class="footer-col"><h5>Roles</h5>
+            <a href="#">For Authors</a><a href="#">For Reviewers</a><a href="#">For Chairs</a><a href="#">For Admins</a>
+          </div>
+          <div class="footer-col"><h5>Company</h5>
+            <a href="#">About</a><a href="#">Blog</a><a href="#">Pricing</a><a href="#">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 ConfFlow. All rights reserved.</span>
+        <span>Built with ❤️ for researchers worldwide</span>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     CONFERENCES PAGE
+════════════════════════════════════════════════════ -->
+<div id="page-conferences" class="page">
+  <div class="public-page">
+    <div class="container">
+      <div class="page-header">
+        <h1>Active Conferences</h1>
+        <p>Discover and submit to world-leading research venues</p>
+      </div>
+      <div class="conf-controls">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="color:var(--t3);flex-shrink:0"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" placeholder="Search by title, topic, or location..." oninput="CF.filterSearch(this.value)">
+        </div>
+        <div class="filter-tags">
+          <button class="filter-tag active" onclick="CF.filterByTag(this,'all')">All</button>
+          <button class="filter-tag" onclick="CF.filterByTag(this,'AI')">AI & ML</button>
+          <button class="filter-tag" onclick="CF.filterByTag(this,'Security')">Security</button>
+          <button class="filter-tag" onclick="CF.filterByTag(this,'HCI')">HCI</button>
+          <button class="filter-tag" onclick="CF.filterByTag(this,'Data')">Data Science</button>
+          <button class="filter-tag" onclick="CF.filterByTag(this,'Quantum')">Quantum</button>
+          <button class="filter-tag" onclick="CF.filterByTag(this,'Biotech')">Biotech</button>
+        </div>
+      </div>
+      <div class="conf-grid" id="confGrid"></div>
+    </div>
+    <footer class="site-footer" style="margin-top:60px">
+      <div class="footer-bottom" style="max-width:1200px;margin:0 auto">
+        <span>© 2025 ConfFlow</span><span>All rights reserved</span>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     CONFERENCE DETAIL PAGE
+════════════════════════════════════════════════════ -->
+<div id="page-conf-detail" class="page">
+  <div class="public-page">
+    <div class="container" style="padding-top:32px;padding-bottom:80px">
+      <button class="btn btn--ghost btn--sm" onclick="CF.navigate('conferences')" style="margin-bottom:24px">← Back to Conferences</button>
+      <div id="confDetailContent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     LOGIN PAGE
+════════════════════════════════════════════════════ -->
+<div id="page-login" class="page">
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <div class="auth-logo-mark"><svg viewBox="0 0 20 20"><path d="M3 5h14M3 10h9M3 15h11" stroke-linecap="round"/></svg></div>
+        ConfFlow
+      </div>
+      <h2>Welcome back</h2>
+      <p class="auth-sub">Sign in to your account to continue</p>
+      <form class="auth-form" onsubmit="CF.handleLogin(event)">
+        <div class="form-group">
+          <label class="form-label">Email address</label>
+          <input class="form-input" type="email" id="loginEmail" placeholder="you@university.edu" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-input" type="password" id="loginPass" placeholder="Enter your password" required autocomplete="current-password">
+        </div>
+        <div class="form-row">
+          <label class="checkbox-row"><input type="checkbox"> Remember me</label>
+          <a href="#" class="link-sm">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn btn--primary btn--full" style="padding:12px">Sign in →</button>
+      </form>
+      <div class="auth-divider" style="margin:16px 0"><span>or continue with</span></div>
+      <div class="social-btns">
+        <button class="btn-social" onclick="CF.loginWithGoogle()">
+          <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          Google
+        </button>
+        <button class="btn-social" onclick="CF.loginWithGithub()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.23 1.84 1.23 1.07 1.84 2.81 1.31 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.41 1.02.01 2.04.14 3 .41 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </button>
+      </div>
+      <p class="auth-footer">Don't have an account? <a href="#" onclick="CF.navigate('register');return false">Sign up free</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     REGISTER PAGE
+════════════════════════════════════════════════════ -->
+<div id="page-register" class="page">
+  <div class="auth-page">
+    <div class="auth-card auth-card--wide">
+      <div class="auth-logo">
+        <div class="auth-logo-mark"><svg viewBox="0 0 20 20"><path d="M3 5h14M3 10h9M3 15h11" stroke-linecap="round"/></svg></div>
+        ConfFlow
+      </div>
+      <h2>Create your account</h2>
+      <p class="auth-sub">Join 50,000+ researchers and conference organizers</p>
+      <form class="auth-form" onsubmit="CF.handleRegister(event)">
+        <div class="form-row-2">
+          <div class="form-group"><label class="form-label">First Name</label><input class="form-input" type="text" id="regFirst" placeholder="Jane" required></div>
+          <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" type="text" id="regLast" placeholder="Smith" required></div>
+        </div>
+        <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" id="regEmail" placeholder="jane@university.edu" required></div>
+        <div class="form-group"><label class="form-label">Institution</label><input class="form-input" type="text" id="regInst" placeholder="MIT, Stanford, Google Research..."></div>
+        <div class="form-group">
+          <label class="form-label">I am joining as</label>
+          <div class="role-selector">
+            <div class="role-card active" onclick="CF.selectRole(this,'author')">
+              <span class="role-icon">✍️</span>
+              <span class="role-name">Author</span>
+              <span class="role-desc">Submit papers</span>
+            </div>
+            <div class="role-card" onclick="CF.selectRole(this,'reviewer')">
+              <span class="role-icon">🧑‍⚖️</span>
+              <span class="role-name">Reviewer</span>
+              <span class="role-desc">Review submissions</span>
+            </div>
+            <div class="role-card" onclick="CF.selectRole(this,'chair')">
+              <span class="role-icon">👑</span>
+              <span class="role-name">Chair</span>
+              <span class="role-desc">Run conferences</span>
+            </div>
+          </div>
+          <input type="hidden" id="regRole" value="author">
+        </div>
+        <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password" id="regPass" placeholder="Min. 8 characters" required></div>
+        <label class="checkbox-row"><input type="checkbox" required> I agree to the <a href="#" style="color:var(--accent);font-weight:600">Terms</a> and <a href="#" style="color:var(--accent);font-weight:600">Privacy Policy</a></label>
+        <button type="submit" class="btn btn--primary btn--full" style="padding:12px">Create Account →</button>
+      </form>
+      <p class="auth-footer">Already have an account? <a href="#" onclick="CF.navigate('login');return false">Sign in</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     DASHBOARD
+════════════════════════════════════════════════════ -->
+<div id="page-dashboard" class="page">
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="appSidebar">
+      <div class="sidebar__logo">
+        <a href="#" class="cf-logo" onclick="CF.navigate('home');return false" style="font-size:15px">
+          <div class="cf-logo__mark" style="width:28px;height:28px;border-radius:7px">
+            <svg viewBox="0 0 20 20" style="width:15px;height:15px"><path d="M3 5h14M3 10h9M3 15h11" stroke-linecap="round"/></svg>
+          </div>
+          <span class="cf-logo__text" style="font-size:15px">ConfFlow</span>
+        </a>
+      </div>
+      <div class="sidebar__user">
+        <div class="sidebar__avatar" id="sidebarAvatar">JD</div>
+        <div>
+          <div class="sidebar__user-name" id="sidebarName">John Doe</div>
+          <div class="sidebar__user-role" id="sidebarRole">Author</div>
+        </div>
+      </div>
+      <nav class="sidebar__nav" id="sidebarNav"></nav>
+      <button class="sidebar__logout" onclick="CF.logout()">← Sign Out</button>
+    </aside>
+    <!-- Main -->
+    <main class="app-main">
+      <div id="dashContent"></div>
+    </main>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     TOAST NOTIFICATION
+════════════════════════════════════════════════════ -->
+<div id="cf-toast" class="cf-toast" role="alert" aria-live="polite"></div>
+
+<!-- SCRIPTS — load order is critical:
+     1. firebase-config.js  → sets window.__FIREBASE_CONFIG__ (written by build.js with real keys)
+     2. firebase.js         → ES module, boots Firebase, exposes window.FirebaseServices, fires firebase-ready
+     3. app.js              → plain script (defer), waits for firebase-ready event -->
+<script src="./firebase-config.js"></script>
+<script type="module" src="./firebase.js"></script>
+<script src="./config.js"></script>
+<script src="./app.js" defer></script>
+</body>
+</html>

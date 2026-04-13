@@ -1,0 +1,101 @@
+/* ConfFlow — Navigation Styles */
+
+#navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h);
+  background: rgba(248,247,245,0.88);
+  backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  height: 100%; display: flex; align-items: center; gap: 0; padding: 0 24px;
+}
+
+/* Logo */
+.cf-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; color: var(--t1); margin-right: 32px; }
+.cf-logo__mark {
+  width: 32px; height: 32px; border-radius: 9px;
+  background: var(--accent); display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0;
+}
+.cf-logo__mark svg { width: 18px; height: 18px; fill: none; stroke: white; stroke-width: 2; stroke-linecap: round; }
+.cf-logo__text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: -.3px; }
+
+/* Links */
+.nav-links { display: flex; gap: 2px; flex: 1; }
+.nav-link {
+  color: var(--t2); text-decoration: none; padding: 7px 13px;
+  border-radius: 8px; font-size: 14px; font-weight: 500; transition: all .15s;
+  border: none; background: none; cursor: pointer; font-family: inherit;
+}
+.nav-link:hover { color: var(--t1); background: var(--bg2); }
+.nav-link.active { color: var(--accent); font-weight: 600; }
+
+/* Actions */
+.nav-actions { display: flex; gap: 8px; align-items: center; margin-left: 16px; }
+
+/* Mobile */
+.mobile-btn {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  background: none; border: none; padding: 8px; margin-left: auto;
+}
+.mobile-btn span { width: 20px; height: 1.5px; background: var(--t2); border-radius: 2px; display: block; transition: all .2s; }
+.mobile-menu {
+  display: none; flex-direction: column; gap: 2px;
+  padding: 10px 16px 16px; border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a, .mobile-menu button {
+  color: var(--t2); text-decoration: none; padding: 10px 12px;
+  font-size: 14px; font-weight: 500; border-radius: 8px; cursor: pointer;
+  background: none; border: none; font-family: inherit; text-align: left; display: block;
+}
+.mobile-menu a:hover, .mobile-menu button:hover { background: var(--bg2); color: var(--t1); }
+
+/* Sidebar Navigation */
+.sidebar {
+  width: var(--sidebar-w); background: var(--surface);
+  border-right: 1px solid var(--border);
+  position: fixed; top: 0; left: 0; bottom: 0;
+  z-index: 900; overflow-y: auto; display: flex; flex-direction: column;
+}
+.sidebar__logo { padding: 18px 18px 14px; border-bottom: 1px solid var(--border); }
+.sidebar__user {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 16px; margin: 8px; background: var(--bg2);
+  border-radius: var(--r); border: 1px solid var(--border);
+}
+.sidebar__avatar {
+  width: 34px; height: 34px; border-radius: 50%; background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: white; flex-shrink: 0;
+}
+.sidebar__user-name { font-size: 13px; font-weight: 700; line-height: 1.2; }
+.sidebar__user-role { font-size: 11px; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: .4px; }
+.sidebar__nav { padding: 8px; flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.nav-item {
+  display: flex; align-items: center; gap: 9px; padding: 9px 12px;
+  border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--t2);
+  cursor: pointer; transition: all .13s; border: none; background: none;
+  font-family: inherit; width: 100%; text-align: left;
+}
+.nav-item:hover { background: var(--bg2); color: var(--t1); }
+.nav-item.active { background: var(--accent-lt); color: var(--accent); font-weight: 600; }
+.nav-item__icon { font-size: 15px; width: 18px; text-align: center; opacity: .7; flex-shrink: 0; }
+.sidebar__logout {
+  margin: 8px; padding: 9px 12px; border-radius: 8px;
+  border: 1px solid var(--border); background: none; color: var(--t3);
+  cursor: pointer; font-family: inherit; font-size: 13px; text-align: left;
+  transition: all .15s;
+}
+.sidebar__logout:hover { background: var(--red-lt); color: var(--red); border-color: #fca5a5; }
+
+/* Responsive Nav */
+@media (max-width: 768px) {
+  .nav-links, .nav-actions { display: none; }
+  .mobile-btn { display: flex; }
+  .sidebar { transform: translateX(-100%); transition: transform .25s; }
+  .sidebar.open { transform: translateX(0); }
+}

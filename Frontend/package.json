@@ -1,0 +1,23 @@
+{
+  "name": "confflow",
+  "version": "1.0.0",
+  "description": "AI-powered research conference management platform",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve . -p 3000",
+    "dev": "serve . -p 3000 --no-clipboard",
+    "build": "node build.js",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "serve": "^14.2.1",
+    "vercel": "^33.0.0"
+  },
+  "keywords": ["conference", "research", "paper-submission", "peer-review", "ai-review", "academic"],
+  "author": "ConfFlow Team",
+  "license": "MIT",
+  "engines": {
+    "node": "20.x"
+  }
+}
